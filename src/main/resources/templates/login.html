@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LoRaTerra - Accesso</title>
+
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+
+  <!-- anime.js v4 (UMD build, exposes global "anime") -->
+  <script src="https://cdn.jsdelivr.net/npm/animejs@4.5.0/dist/bundles/anime.umd.min.js"></script>
+
+  <style>
+    .login {
+      min-height: 100vh;
+    }
+
+    .bg-image {
+      background-color: #1f4d3a;
+      overflow: hidden;
+    }
+
+    .neon-logo {
+      width: 100%;
+      padding: 2rem;
+      color: #39ff14; /* neon green */
+      filter:
+              drop-shadow(0 0 2px currentColor)
+              drop-shadow(0 0 6px currentColor)
+              drop-shadow(0 0 14px currentColor);
+    }
+
+    @keyframes neon-flicker {
+      0%, 18%, 22%, 62%, 64%, 100% { opacity: 1; }
+      20%, 63%                      { opacity: 0.55; }
+    }
+
+    .neon-logo {
+      animation: neon-flicker 4s infinite;
+    }
+
+    .login-heading {
+      font-weight: 300;
+    }
+
+    .btn-login {
+      font-size: 0.9rem;
+      letter-spacing: 0.05rem;
+      padding: 0.75rem 1rem;
+    }
+
+    /* Particles are positioned from the centre of this zero-size anchor */
+    .particles {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+    }
+
+    .particle {
+      position: absolute;
+      width: 0.6rem;
+      height: 0.6rem;
+      margin: -0.3rem 0 0 -0.3rem;
+      border-radius: 50%;
+      background: #fff;
+      opacity: 0.85;
+    }
+
+    .earth {
+      width: 40%;
+      max-width: 180px;
+      padding: 0;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+<div class="row g-0">
+
+  <!-- Animated panel (hidden on small screens) -->
+  <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image position-relative">
+
+    <!-- Globe -->
+    <svg class="earth neon-logo" viewBox="0 0 120 120">
+      <g stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round">
+        <circle cx="60" cy="60" r="54"/>
+        <ellipse cx="60" cy="60" rx="22" ry="54"/>
+        <ellipse cx="60" cy="60" rx="40" ry="54"/>
+        <line x1="60" y1="6" x2="60" y2="114"/>
+        <line x1="6" y1="60" x2="114" y2="60"/>
+        <line x1="11.6" y1="36" x2="108.4" y2="36"/>
+        <line x1="11.6" y1="84" x2="108.4" y2="84"/>
+      </g>
+    </svg>
+
+
+    <svg viewBox="0 0 304 112"  class="neon-logo">
+      <g stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+        <path class="line" d="M59 90V56.136C58.66 46.48 51.225 39 42 39c-9.389 0-17 7.611-17 17s7.611 17 17 17h8.5v17H42C23.222 90 8 74.778 8 56s15.222-34 34-34c18.61 0 33.433 14.994 34 33.875V90H59z"/>
+        <polyline class="line" points="59 22.035 59 90 76 90 76 22 59 22"/>
+        <path class="line" d="M59 90V55.74C59.567 36.993 74.39 22 93 22c18.778 0 34 15.222 34 34v34h-17V56c0-9.389-7.611-17-17-17-9.225 0-16.66 7.48-17 17.136V90H59z"/>
+        <polyline class="line" points="127 22.055 127 90 144 90 144 22 127 22"/>
+        <path class="line" d="M127 90V55.74C127.567 36.993 142.39 22 161 22c18.778 0 34 15.222 34 34v34h-17V56c0-9.389-7.611-17-17-17-9.225 0-16.66 7.48-17 17.136V90h-17z"/>
+        <path class="line" d="M118.5 22a8.5 8.5 0 1 1-8.477 9.067v-1.134c.283-4.42 3.966-7.933 8.477-7.933z"/>
+        <path class="line" d="M144 73c-9.389 0-17-7.611-17-17v-8.5h-17V56c0 18.778 15.222 34 34 34V73z"/>
+        <path class="line" d="M178 90V55.74C178.567 36.993 193.39 22 212 22c18.778 0 34 15.222 34 34v34h-17V56c0-9.389-7.611-17-17-17-9.225 0-16.66 7.48-17 17.136V90h-17z"/>
+        <path class="line" d="M263 73c-9.389 0-17-7.611-17-17s7.611-17 17-17c9.18 0 16.58 7.4 17 17h-17v17h34V55.875C296.433 36.994 281.61 22 263 22c-18.778 0-34 15.222-34 34s15.222 34 34 34V73z"/>
+        <path class="line" d="M288.477 73A8.5 8.5 0 1 1 280 82.067v-1.134c.295-4.42 3.967-7.933 8.477-7.933z"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Login column -->
+  <div class="col-md-8 col-lg-6">
+    <div class="login d-flex align-items-center py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9 col-lg-8 mx-auto">
+
+            <h3 class="login-heading mb-4">Welcome back!</h3>
+
+            <!-- Feedback messages -->
+            <p class="text-danger" th:if="${param.error}">Email o password errati.</p>
+            <p class="text-success" th:if="${param.logout}">Disconnessione effettuata.</p>
+
+            <!-- Sign In Form -->
+            <form th:action="@{/login}" method="post">
+
+              <div class="form-floating mb-3">
+                <input id="email" name="email" type="email"
+                       class="form-control" placeholder="Email" required>
+                <label for="email">Email</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input id="password" name="password" type="password"
+                       class="form-control" placeholder="Password" required>
+                <label for="password">Password</label>
+              </div>
+
+              <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2"
+                      type="submit">
+                Login
+              </button>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const { animate, svg, stagger } = anime;
+
+  animate(svg.createDrawable('.line'), {
+    draw: ['0 1'],
+    ease: 'inOutQuad',
+    duration: 2000,
+    delay: stagger(100),
+    loop: false
+  });
+
+  animate('.earth', {
+    rotate: 360,        // positive = clockwise
+    duration: 20000,    // one full turn every 20 seconds
+    ease: 'linear',     // constant speed, no slowdown between loops
+    loop: true,
+  });
+</script>
+</body>
+</html>
